@@ -215,8 +215,9 @@ img {
 }
 
 .logo {
-    height: 50px;
+    height: 70px;
     width: auto;
+    transition: var(--transition);
 }
 
 .nav-links {
@@ -563,7 +564,7 @@ img {
 }
 
 .footer-logo {
-    height: 60px;
+    height: 90px;
     margin-bottom: 24px;
     filter: brightness(0) invert(1);
 }
@@ -698,6 +699,10 @@ img {
 }
 
 @media (max-width: 768px) {
+    .logo {
+        height: 50px;
+    }
+    
     .nav-links {
         position: fixed;
         top: 80px;
