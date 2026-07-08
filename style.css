@@ -282,12 +282,12 @@ img {
 
 .left-split {
     left: 0;
-    background-image: url('https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80');
+    background-image: url('https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2000&auto=format&fit=crop');
 }
 
 .right-split {
     right: 0;
-    background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80');
+    background-image: url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=2000&auto=format&fit=crop');
 }
 
 .hero-overlay {
