@@ -692,6 +692,16 @@ img {
     font-size: 0.95rem;
 }
 
+.footer-bottom a {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.footer-bottom a:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
 /* Animations */
 .fade-in-up {
     opacity: 0;
