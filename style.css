@@ -32,6 +32,11 @@ html {
 body {
     font-family: 'Inter', 'Cairo', sans-serif;
     color: var(--text-dark);
+}
+
+[dir="rtl"] body {
+    font-family: 'Cairo', 'Inter', sans-serif;
+}
     line-height: 1.6;
     background-color: var(--white);
     overflow-x: hidden;
@@ -102,7 +107,7 @@ img {
 }
 
 .ml-2 {
-    margin-left: 0.5rem;
+    margin-inline-start: 0.5rem;
 }
 
 /* Section Headers */
@@ -142,6 +147,11 @@ img {
 .about-text .section-title::after, .contact-info .section-title::after {
     left: 0;
     transform: translateX(0);
+}
+
+[dir="rtl"] .about-text .section-title::after, [dir="rtl"] .contact-info .section-title::after {
+    left: auto;
+    right: 0;
 }
 
 .section-subtitle {
@@ -291,6 +301,16 @@ img {
     background-image: url('hero-right.jpg');
 }
 
+[dir="rtl"] .left-split {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .right-split {
+    right: auto;
+    left: 0;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -347,7 +367,7 @@ img {
     box-shadow: var(--shadow-sm);
     display: flex;
     gap: 20px;
-    border-left: 4px solid var(--primary-green);
+    border-inline-start: 4px solid var(--primary-green);
 }
 
 .icon-box {
@@ -459,6 +479,11 @@ img {
 
 .service-card:hover .card-icon i {
     transform: rotateY(180deg);
+}
+
+[dir="rtl"] .card-icon {
+    right: auto;
+    left: 24px;
 }
 
 .card-content {
@@ -614,6 +639,11 @@ img {
     border-radius: 2px;
 }
 
+[dir="rtl"] .footer-links h3::after, [dir="rtl"] .footer-vision h3::after {
+    left: auto;
+    right: 0;
+}
+
 .footer-links ul {
     display: flex;
     flex-direction: column;
@@ -622,7 +652,7 @@ img {
 
 .footer-links a:hover {
     color: var(--primary-green);
-    padding-left: 5px;
+    padding-inline-start: 5px;
 }
 
 .vision-badge {
@@ -677,6 +707,14 @@ img {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+[dir="rtl"] .fade-in-left {
+    transform: translateX(40px);
+}
+
+[dir="rtl"] .fade-in-right {
+    transform: translateX(-40px);
+}
+
 .fade-in-up.visible, .fade-in-left.visible, .fade-in-right.visible {
     opacity: 1;
     transform: translate(0);
@@ -720,6 +758,15 @@ img {
     
     .nav-links.active {
         left: 0;
+    }
+    
+    [dir="rtl"] .nav-links {
+        left: auto;
+        right: -100%;
+    }
+    
+    [dir="rtl"] .nav-links.active {
+        right: 0;
     }
     
     .nav-link {
