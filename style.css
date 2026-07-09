@@ -610,13 +610,17 @@ img {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     color: var(--white);
+    transition: var(--transition);
 }
 
 .social-links a:hover {
-    background: var(--primary-green);
+    background: transparent;
+    border-color: var(--primary-green);
+    color: var(--primary-green);
     transform: translateY(-3px);
 }
 
