@@ -214,6 +214,18 @@ img {
     box-shadow: 0 15px 25px -8px rgba(101, 168, 68, 0.35);
 }
 
+.btn-danger {
+    background: #e11d48;
+    color: var(--white);
+    box-shadow: 0 10px 20px -6px rgba(225, 29, 72, 0.25);
+}
+
+.btn-danger:hover {
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px -8px rgba(225, 29, 72, 0.35);
+}
+
 .btn-block {
     display: block;
     width: 100%;

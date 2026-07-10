@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 4. Form Submission Handler (Prevent default & show loading state for demo)
+    // 4. Form Submission Handler (Submit data to FormSubmit.co via AJAX)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -95,24 +95,65 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const isAr = document.documentElement.getAttribute('lang') === 'ar';
+
             // Show loading state
-            btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
+            btn.innerHTML = isAr ? 'جاري الإرسال... <i class="fas fa-spinner fa-spin ml-2"></i>' : 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
             btn.disabled = true;
             
-            // Simulate network request
-            setTimeout(() => {
-                // Show success state
-                btn.innerHTML = 'Message Sent! <i class="fas fa-check ml-2"></i>';
-                btn.classList.replace('btn-primary', 'btn-secondary');
-                contactForm.reset();
+            // Send the request via FormSubmit AJAX endpoint
+            fetch('https://formsubmit.co/ajax/sales@samkume.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === 'true' || data.success === true) {
+                    // Show success state
+                    btn.innerHTML = isAr ? 'تم إرسال الرسالة! <i class="fas fa-check ml-2"></i>' : 'Message Sent! <i class="fas fa-check ml-2"></i>';
+                    btn.classList.replace('btn-primary', 'btn-secondary');
+                    contactForm.reset();
+                } else {
+                    // Handle failure response
+                    btn.innerHTML = isAr ? 'فشل الإرسال <i class="fas fa-exclamation-triangle ml-2"></i>' : 'Failed to Send <i class="fas fa-exclamation-triangle ml-2"></i>';
+                    btn.classList.replace('btn-primary', 'btn-danger');
+                }
                 
                 // Revert button after 3 seconds
                 setTimeout(() => {
                     btn.innerHTML = originalText;
-                    btn.classList.replace('btn-secondary', 'btn-primary');
+                    btn.classList.remove('btn-secondary', 'btn-danger');
+                    btn.classList.add('btn-primary');
                     btn.disabled = false;
                 }, 3000);
-            }, 1500);
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                btn.innerHTML = isAr ? 'خطأ في الإرسال <i class="fas fa-wifi ml-2"></i>' : 'Error Sending <i class="fas fa-wifi ml-2"></i>';
+                btn.classList.replace('btn-primary', 'btn-danger');
+                
+                // Revert button after 3 seconds
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('btn-secondary', 'btn-danger');
+                    btn.classList.add('btn-primary');
+                    btn.disabled = false;
+                }, 3000);
+            });
         });
     }
 
