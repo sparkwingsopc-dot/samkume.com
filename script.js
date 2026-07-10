@@ -90,6 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Form Submission Handler (Submit data to FormSubmit.co via AJAX)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
+        // Clear status message when typing starts
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const statusMsg = contactForm.querySelector('.form-status-message');
+                if (statusMsg) {
+                    statusMsg.style.opacity = '0';
+                    setTimeout(() => {
+                        if (statusMsg.style.opacity === '0') {
+                            statusMsg.style.display = 'none';
+                        }
+                    }, 300);
+                }
+            });
+        });
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button[type="submit"]');
@@ -106,6 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = isAr ? 'جاري الإرسال... <i class="fas fa-spinner fa-spin ml-2"></i>' : 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
             btn.disabled = true;
             
+            // Ensure status message container is hidden during new submission
+            const existingMsg = contactForm.querySelector('.form-status-message');
+            if (existingMsg) {
+                existingMsg.style.display = 'none';
+            }
+
             // Send the request via FormSubmit AJAX endpoint
             fetch('https://formsubmit.co/ajax/sales@samkume.com', {
                 method: 'POST',
@@ -122,37 +144,124 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
+                // Ensure a status message div exists
+                let statusMsg = contactForm.querySelector('.form-status-message');
+                if (!statusMsg) {
+                    statusMsg = document.createElement('div');
+                    statusMsg.className = 'form-status-message';
+                    statusMsg.style.marginTop = '20px';
+                    statusMsg.style.padding = '14px 18px';
+                    statusMsg.style.borderRadius = 'var(--radius-sm)';
+                    statusMsg.style.fontSize = '0.92rem';
+                    statusMsg.style.textAlign = 'center';
+                    statusMsg.style.fontWeight = '500';
+                    statusMsg.style.lineHeight = '1.5';
+                    statusMsg.style.transition = 'opacity 0.3s ease';
+                    contactForm.appendChild(statusMsg);
+                }
+
+                statusMsg.style.display = 'block';
+                statusMsg.style.opacity = '0';
+                // Trigger reflow
+                statusMsg.offsetHeight;
+                statusMsg.style.opacity = '1';
+
                 if (data.success === 'true' || data.success === true) {
                     // Show success state
                     btn.innerHTML = isAr ? 'تم إرسال الرسالة! <i class="fas fa-check ml-2"></i>' : 'Message Sent! <i class="fas fa-check ml-2"></i>';
                     btn.classList.replace('btn-primary', 'btn-secondary');
+                    
+                    statusMsg.style.backgroundColor = 'var(--bg-light-green)';
+                    statusMsg.style.color = 'var(--dark-green)';
+                    statusMsg.style.border = '1px solid rgba(101, 168, 68, 0.2)';
+                    statusMsg.innerHTML = isAr 
+                        ? 'تم إرسال رسالتك بنجاح. شكرًا لك! سنتواصل معك قريبًا.' 
+                        : 'Your message has been sent successfully. Thank you! We will get back to you soon.';
+                    
                     contactForm.reset();
+                    
+                    // Hide success message and revert button after 5 seconds
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('btn-secondary', 'btn-danger');
+                        btn.classList.add('btn-primary');
+                        btn.disabled = false;
+                        statusMsg.style.opacity = '0';
+                        setTimeout(() => {
+                            if (statusMsg.style.opacity === '0') {
+                                statusMsg.style.display = 'none';
+                            }
+                        }, 300);
+                    }, 5000);
                 } else {
                     // Handle failure response
+                    console.error('FormSubmit failure response:', data);
                     btn.innerHTML = isAr ? 'فشل الإرسال <i class="fas fa-exclamation-triangle ml-2"></i>' : 'Failed to Send <i class="fas fa-exclamation-triangle ml-2"></i>';
                     btn.classList.replace('btn-primary', 'btn-danger');
+
+                    const isActivation = data.message && (data.message.includes('Activation') || data.message.includes('activate') || data.message.includes('actived'));
+                    if (isActivation) {
+                        statusMsg.style.backgroundColor = '#fffbeb';
+                        statusMsg.style.color = '#92400e';
+                        statusMsg.style.border = '1px solid #fef3c7';
+                        statusMsg.innerHTML = isAr 
+                            ? 'تفعيل استقبال الرسائل معلق. يرجى التحقق من علبة الوارد لـ <strong>sales@samkume.com</strong> والضغط على رابط التفعيل المرسل من FormSubmit.'
+                            : 'Form activation pending. Please check the inbox of <strong>sales@samkume.com</strong> and click the activation link from FormSubmit.';
+                    } else {
+                        statusMsg.style.backgroundColor = '#fef2f2';
+                        statusMsg.style.color = '#991b1b';
+                        statusMsg.style.border = '1px solid #fee2e2';
+                        statusMsg.innerHTML = isAr 
+                            ? `فشل الإرسال: ${data.message || 'يرجى المحاولة مرة أخرى لاحقًا.'}`
+                            : `Submission failed: ${data.message || 'Please try again later.'}`;
+                    }
+
+                    // Revert button after 6 seconds (keep message visible longer for admin to read)
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('btn-secondary', 'btn-danger');
+                        btn.classList.add('btn-primary');
+                        btn.disabled = false;
+                    }, 6000);
                 }
-                
-                // Revert button after 3 seconds
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('btn-secondary', 'btn-danger');
-                    btn.classList.add('btn-primary');
-                    btn.disabled = false;
-                }, 3000);
             })
             .catch(error => {
                 console.error('Error submitting form:', error);
+                
+                let statusMsg = contactForm.querySelector('.form-status-message');
+                if (!statusMsg) {
+                    statusMsg = document.createElement('div');
+                    statusMsg.className = 'form-status-message';
+                    statusMsg.style.marginTop = '20px';
+                    statusMsg.style.padding = '14px 18px';
+                    statusMsg.style.borderRadius = 'var(--radius-sm)';
+                    statusMsg.style.fontSize = '0.92rem';
+                    statusMsg.style.textAlign = 'center';
+                    statusMsg.style.fontWeight = '500';
+                    statusMsg.style.lineHeight = '1.5';
+                    statusMsg.style.transition = 'opacity 0.3s ease';
+                    contactForm.appendChild(statusMsg);
+                }
+
                 btn.innerHTML = isAr ? 'خطأ في الإرسال <i class="fas fa-wifi ml-2"></i>' : 'Error Sending <i class="fas fa-wifi ml-2"></i>';
                 btn.classList.replace('btn-primary', 'btn-danger');
                 
-                // Revert button after 3 seconds
+                statusMsg.style.display = 'block';
+                statusMsg.style.opacity = '1';
+                statusMsg.style.backgroundColor = '#fef2f2';
+                statusMsg.style.color = '#991b1b';
+                statusMsg.style.border = '1px solid #fee2e2';
+                statusMsg.innerHTML = isAr
+                    ? 'حدث خطأ في الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.'
+                    : 'A network error occurred. Please check your internet connection and try again.';
+
+                // Revert button after 6 seconds
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.classList.remove('btn-secondary', 'btn-danger');
                     btn.classList.add('btn-primary');
                     btn.disabled = false;
-                }, 3000);
+                }, 6000);
             });
         });
     }
