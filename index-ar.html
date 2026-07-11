@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سامكو العالمية | حلول هندسية متكاملة وخدمات دعم المرافق</title>
-    <link rel="icon" type="image/jpeg" href="logo-new.jpg">
+    <link rel="icon" type="image/png" href="logo-new.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,14 +23,20 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="#" class="logo-link">
-                <img src="logo-new.jpg" alt="Samku International Logo" class="logo">
+                <img src="logo-new.png" alt="Samku International Logo" class="logo">
             </a>
             <div class="nav-links">
-                <a href="#home" class="nav-link active">الرئيسية</a>
-                <a href="#about" class="nav-link">من نحن</a>
-                <a href="#contracting" class="nav-link">خدمات المقاولات</a>
-                <a href="#cleaning" class="nav-link">التنظيف والدعم</a>
-                <a href="#contact" class="nav-link">اتصل بنا</a>
+                <a href="index-ar.html" class="nav-link active">الرئيسية</a>
+                <a href="about-ar.html" class="nav-link">من نحن</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">الخدمات <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="engineering-ar.html" class="dropdown-item">الهندسة</a>
+                        <a href="support-ar.html" class="dropdown-item">خدمات الدعم</a>
+                        <a href="environmental-ar.html" class="dropdown-item">البيئة</a>
+                    </div>
+                </div>
+                <a href="contact-ar.html" class="nav-link">اتصل بنا</a>
                 <a href="index.html" class="nav-link lang-toggle">English <i class="fas fa-globe ml-2"></i></a>
             </div>
             <div class="hamburger">
@@ -39,8 +45,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+<section id="home" class="hero">
         <div class="hero-split-container">
             <div class="hero-split left-split"></div>
             <div class="hero-split right-split"></div>
@@ -51,8 +56,8 @@
             <h1>حلول هندسية متكاملة<br>وخدمات دعم المرافق</h1>
             <p>تقديم بنية تحتية عالية الجودة وخدمات تنظيف شاملة للمرافق في جميع أنحاء المملكة العربية السعودية.</p>
             <div class="hero-buttons">
-                <a href="#contracting" class="btn btn-primary">اكتشف المقاولات</a>
-                <a href="#cleaning" class="btn btn-secondary">اكتشف التنظيف</a>
+                <a href="engineering-ar.html" class="btn btn-primary">القسم الهندسي</a>
+                <a href="support-ar.html" class="btn btn-secondary">خدمات الدعم</a>
             </div>
         </div>
     </section>
@@ -62,8 +67,8 @@
         <div class="container">
             <div class="trust-grid">
                 <div class="trust-item">
-                    <div class="num">2</div>
-                    <div class="lbl">قطاعان رئيسيان</div>
+                    <div class="num">3</div>
+                    <div class="lbl">أقسام رئيسية</div>
                 </div>
                 <div class="trust-item">
                     <div class="num">15+</div>
@@ -81,251 +86,59 @@
         </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section bg-light">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text fade-in-left">
-                    <h2 class="section-title">عن <span>سامكو العالمية</span></h2>
-                    <p class="lead">شركة سامكو العالمية هي شركة متخصصة في تقديم الحلول الهندسية المتكاملة، ومشاريع البنية التحتية، وخدمات التنظيف والتشغيل والدعم المهنية المصممة خصيصًا للسوق السعودي.</p>
-                    
-                    <div class="vision-box mt-4">
-                        <div class="icon-box">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <div>
-                            <h3>رؤيتنا</h3>
-                            <p>أن نصبح شركة رائدة في قطاعات البناء والبنية التحتية ودعم المرافق من خلال تقديم حلول مبتكرة وعالية الجودة ومنظمة تساهم في تنمية المجتمع ودعم رؤية السعودية 2030.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="core-values fade-in-right">
-                    <h3>قيمنا الأساسية</h3>
-                    <ul class="values-list">
-                        <li>
-                            <i class="fas fa-check-circle text-green"></i>
-                            <div>
-                                <h4>الجودة والتميز</h4>
-                                <p>معايير لا مساومة فيها في كل مشروع.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock text-green"></i>
-                            <div>
-                                <h4>الالتزام بالمواعيد</h4>
-                                <p>تسليم في الوقت المحدد بدون استثناءات.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-handshake text-green"></i>
-                            <div>
-                                <h4>النزاهة والشفافية</h4>
-                                <p>تواصل صادق وواضح مع شركائنا.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-hard-hat text-green"></i>
-                            <div>
-                                <h4>السلامة أولاً</h4>
-                                <p>بيئة عمل آمنة لفريقنا وعملائنا.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-smile text-green"></i>
-                            <div>
-                                <h4>رضا العملاء</h4>
-                                <p>تجاوز التوقعات في كل عمل نقوم به.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contracting Services Section -->
-    <section id="contracting" class="section contracting-section">
+    <!-- Our Divisions Teaser -->
+    <section class="section bg-light" id="divisions-teaser">
         <div class="container">
             <div class="text-center section-header fade-in-up">
-                <h2 class="section-title">خدمات <span>المقاولات</span></h2>
-                <p class="section-subtitle">تقديم بنية تحتية قوية وحلول إنشائية مبتكرة لبناء المستقبل.</p>
+                <h2 class="section-title">أقسام <span>شركتنا</span></h2>
+                <p class="section-subtitle">حلول شاملة لمستقبل المملكة.</p>
             </div>
             
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card fade-in-up" data-service-id="contracting-1" style="transition-delay: 0.1s;">
+            <div class="services-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <!-- Engineering -->
+                <div class="service-card fade-in-up">
                     <div class="card-img">
-                        <img src="road.png" alt="أعمال الطرق والأسفلت">
-                        <div class="card-icon"><i class="fas fa-road"></i></div>
+                        <img src="road.png" alt="القسم الهندسي">
+                        <div class="card-icon"><i class="fas fa-hard-hat"></i></div>
                     </div>
                     <div class="card-content">
-                        <h3>أعمال الطرق والأسفلت</h3>
-                        <p>بناء الطرق الشامل ورصفها وصيانتها باستخدام خامات إسفلتية ذات مواصفات عالمية.</p>
+                        <h3>القسم الهندسي</h3>
+                        <p>تقديم بنية تحتية قوية وحلول إنشائية مبتكرة لبناء المستقبل.</p>
+                        <a href="engineering-ar.html" class="btn btn-outline-primary" style="margin-top: 15px; display: inline-block;">اقرأ المزيد</a>
                     </div>
                 </div>
                 
-                <!-- Service 2 -->
-                <div class="service-card fade-in-up" data-service-id="contracting-2" style="transition-delay: 0.2s;">
+                <!-- Support -->
+                <div class="service-card fade-in-up" style="transition-delay: 0.2s;">
                     <div class="card-img">
-                        <img src="water.png" alt="شبكات المياه والصرف الصحي">
-                        <div class="card-icon"><i class="fas fa-water"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>شبكات المياه والصرف الصحي</h3>
-                        <p>تركيب وصيانة أنظمة توزيع المياه الحديثة وشبكات الصرف الصحي بكفاءة عالية.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card fade-in-up" data-service-id="contracting-3" style="transition-delay: 0.3s;">
-                    <div class="card-img">
-                        <img src="landscaping.png" alt="تنسيق الحدائق">
-                        <div class="card-icon"><i class="fas fa-leaf"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>تنسيق الحدائق والمسطحات</h3>
-                        <p>تحويل المساحات الحضرية إلى بيئات طبيعية مستدامة وجذابة منسقة بأعلى معايير الجودة.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card fade-in-up" data-service-id="contracting-4" style="transition-delay: 0.4s;">
-                    <div class="card-img">
-                        <img src="steel.png" alt="إنشاء المستودعات والهناجر الحديدية">
-                        <div class="card-icon"><i class="fas fa-industry"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>إنشاء الهناجر الحديدية</h3>
-                        <p>تصميم وتشييد هياكل حديدية متينة ومخصصة للاستخدامات الصناعية والتجارية.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card fade-in-up" data-service-id="contracting-5" style="transition-delay: 0.5s;">
-                    <div class="card-img">
-                        <img src="road.png" alt="توريد المعدات الثقيلة">
-                        <div class="card-icon"><i class="fas fa-truck-monster"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>توريد المعدات الثقيلة</h3>
-                        <p>توفير آليات ومعدات ثقيلة وموثوقة لجميع مشاريع البناء والإنشاءات الكبرى.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card fade-in-up" data-service-id="contracting-6" style="transition-delay: 0.6s;">
-                    <div class="card-img">
-                        <img src="landscaping.png" alt="أعمال الإنترلوك والأرصفة">
-                        <div class="card-icon"><i class="fas fa-th-large"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>أعمال الإنترلوك والأرصفة</h3>
-                        <p>تركيب أرضيات إنترلوك عالية الجودة للمداخل والممرات والساحات العامة والخاصة.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cleaning & Support Services Section -->
-    <section id="cleaning" class="section cleaning-section bg-light">
-        <div class="container">
-            <div class="text-center section-header fade-in-up">
-                <h2 class="section-title">خدمات <span>التنظيف والدعم</span></h2>
-                <p class="section-subtitle">إدارة المرافق باحترافية، تنظيف وصيانة تشغيلية مصممة خصيصاً لتلبية متطلباتكم.</p>
-            </div>
-            
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-1" style="transition-delay: 0.1s;">
-                    <div class="card-img">
-                        <img src="cleaning.png" alt="التنظيف اليومي والدوري">
-                        <div class="card-icon"><i class="fas fa-broom"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>التنظيف اليومي والدوري</h3>
-                        <p>حلول تنظيف شاملة للمرافق السكنية والتجارية والصناعية بشكل دوري ومنظم.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-2" style="transition-delay: 0.2s;">
-                    <div class="card-img">
-                        <img src="cleaning.png" alt="غسيل الطرق والأرصفة">
-                        <div class="card-icon"><i class="fas fa-spray-can"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>غسيل الطرق والأرصفة</h3>
-                        <p>الحفاظ على نظافة الطرق والمسارات والممرات الخاصة باستخدام معدات الغسيل بالضغط العالي.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-3" style="transition-delay: 0.3s;">
-                    <div class="card-img">
-                        <img src="landscaping.png" alt="قص الحشائش وتقليم الأشجار">
-                        <div class="card-icon"><i class="fas fa-tree"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>تقليم الأشجار وقص الحشائش</h3>
-                        <p>صيانة حدائق المرافق بشكل دوري ومحترف لضمان بيئة خارجية نظيفة وصحية.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-4" style="transition-delay: 0.4s;">
-                    <div class="card-img">
-                        <img src="cleaning.png" alt="تنظيف وشفط البيارات">
-                        <div class="card-icon"><i class="fas fa-truck"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>شفط وتنظيف الخزانات والبيارات</h3>
-                        <p>استخدام صهاريج شفط قوية لسحب الرواسب والتخلص من المخلفات بطرق آمنة بيئياً.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-5" style="transition-delay: 0.5s;">
-                    <div class="card-img">
-                        <img src="ac-cleaning.png" alt="تنظيف التكييف والواجهات">
-                        <div class="card-icon"><i class="fas fa-building"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>تنظيف الواجهات وصيانة التكييف</h3>
-                        <p>تنظيف عميق لأنظمة التكييف والواجهات الخارجية للمباني لتحسين المظهر وجودة الهواء.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-6" style="transition-delay: 0.6s;">
-                    <div class="card-img">
-                        <img src="water.png" alt="توريد وايتات المياه وحاويات المخلفات">
-                        <div class="card-icon"><i class="fas fa-tint"></i></div>
-                    </div>
-                    <div class="card-content">
-                        <h3>صهاريج المياه وتوريد الحاويات</h3>
-                        <p>توريد صهاريج مياه وحاويات مخصصة لإدارة المخلفات وتلبية الاحتياجات التشغيلية للموقع.</p>
-                    </div>
-                </div>
-                
-                <!-- Service 7 -->
-                <div class="service-card fade-in-up" data-service-id="cleaning-7" style="transition-delay: 0.7s;">
-                    <div class="card-img">
-                        <img src="manpower.png" alt="توريد الأيدي العاملة">
+                        <img src="manpower.png" alt="خدمات الدعم">
                         <div class="card-icon"><i class="fas fa-users-cog"></i></div>
                     </div>
                     <div class="card-content">
-                        <h3>توريد الأيدي العاملة</h3>
-                        <p>توفير كوادر بشرية وفنية مدربة ومؤهلة لدعم العمليات التشغيلية في منشأتكم.</p>
+                        <h3>خدمات الدعم</h3>
+                        <p>إدارة المرافق باحترافية، تنظيف وصيانة تشغيلية مصممة لتلبية متطلباتكم.</p>
+                        <a href="support-ar.html" class="btn btn-outline-primary" style="margin-top: 15px; display: inline-block;">اقرأ المزيد</a>
+                    </div>
+                </div>
+                
+                <!-- Environmental -->
+                <div class="service-card fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="card-img">
+                        <img src="landscaping.png" alt="الخدمات البيئية">
+                        <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>الخدمات البيئية</h3>
+                        <p>إدارة بيئية شاملة وخدمات استدامة متكاملة.</p>
+                        <a href="environmental-ar.html" class="btn btn-outline-primary" style="margin-top: 15px; display: inline-block;">اقرأ المزيد</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why SAMKU Section -->
-    <section class="section why-section">
+
+<section class="section why-section">
         <div class="container">
             <div class="text-center section-header fade-in-up">
                 <h2 class="section-title">لماذا تختار <span>سامكو؟</span></h2>
@@ -357,8 +170,7 @@
         </div>
     </section>
 
-    <!-- Clients Section -->
-    <section class="section clients-section bg-light">
+<section class="section clients-section bg-light">
         <div class="container">
             <div class="text-center section-header fade-in-up">
                 <h2 class="section-title">شركاؤنا <span>الموثوقون</span></h2>
@@ -511,70 +323,11 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info fade-in-left">
-                    <h2 class="section-title">تواصل <span>معنا</span></h2>
-                    <p class="mb-4">هل أنت مستعد لبدء مشروعك القادم؟ اتصل بنا اليوم لمناقشة كيف يمكن لسامكو العالمية تقديم الحلول الأمثل لاحتياجاتك.</p>
-                    
-                    <div class="contact-item">
-                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>عنواننا</h4>
-                            <p>الدمام - حي المحمدية<br>المملكة العربية السعودية</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
-                        <div>
-                            <h4>الهاتف</h4>
-                            <p>+966 54 141 1344<br>+966 53 866 0240</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <h4>البريد الإلكتروني</h4>
-                            <p>sales@samkume.com</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-container fade-in-right">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">الاسم الكامل</label>
-                            <input type="text" id="name" name="name" required placeholder="جون دو">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني</label>
-                            <input type="email" id="email" name="email" required placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">الموضوع</label>
-                            <input type="text" id="subject" name="subject" required placeholder="استفسار عن مشروع">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">الرسالة</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="كيف يمكننا مساعدتك؟"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">إرسال الرسالة <i class="fas fa-paper-plane ml-2"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
+<footer class="footer">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <img src="logo-new.jpg" alt="Samku International Logo" class="footer-logo">
+                    <img src="logo-new.png" alt="Samku International Logo" class="footer-logo">
                     <p>شركة سامكو العالمية هي شركة متخصصة في تقديم الحلول الهندسية المتكاملة، ومشاريع البنية التحتية، وخدمات التنظيف والدعم المهنية المصممة خصيصًا للسوق السعودي.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -585,14 +338,17 @@
                 </div>
                 
                 <div class="footer-links">
+                    
                     <h3>روابط سريعة</h3>
                     <ul>
-                        <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#about">من نحن</a></li>
-                        <li><a href="#contracting">خدمات المقاولات</a></li>
-                        <li><a href="#cleaning">التنظيف والدعم</a></li>
-                        <li><a href="#contact">اتصل بنا</a></li>
+                        <li><a href="index-ar.html">الرئيسية</a></li>
+                        <li><a href="about-ar.html">من نحن</a></li>
+                        <li><a href="engineering-ar.html">الهندسة</a></li>
+                        <li><a href="support-ar.html">خدمات الدعم</a></li>
+                        <li><a href="environmental-ar.html">البيئة</a></li>
+                        <li><a href="contact-ar.html">اتصل بنا</a></li>
                     </ul>
+
                 </div>
                 
                 <div class="footer-vision">

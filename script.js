@@ -45,24 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Active link highlighting
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            // Add offset to trigger active state nicely
-            if (window.scrollY >= (sectionTop - 200)) {
-                current = section.getAttribute('id');
-            }
-        });
 
-        links.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#') && href.substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
     });
 
     // 3. Intersection Observer for Fade-in Animations
@@ -113,8 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Get form values
             const name = document.getElementById('name').value;
+            const company = document.getElementById('company') ? document.getElementById('company').value : '';
+            const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
             const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
+            const division = document.getElementById('division') ? document.getElementById('division').value : '';
             const message = document.getElementById('message').value;
             const isAr = document.documentElement.getAttribute('lang') === 'ar';
 
@@ -137,8 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     name: name,
+                    company: company,
+                    phone: phone,
                     email: email,
-                    subject: subject,
+                    division: division,
                     message: message
                 })
             })
@@ -212,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         statusMsg.style.color = '#991b1b';
                         statusMsg.style.border = '1px solid #fee2e2';
                         statusMsg.innerHTML = isAr 
-                            ? `فشل الإرسال: ${data.message || 'يرجى المحاولة مرة أخرى لاحقًا.'}`
-                            : `Submission failed: ${data.message || 'Please try again later.'}`;
+                            ? `فشل الإرسال: ${data.message || JSON.stringify(data)}`
+                            : `Submission failed: ${data.message || JSON.stringify(data)}`;
                     }
 
                     // Revert button after 6 seconds (keep message visible longer for admin to read)
@@ -251,9 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusMsg.style.backgroundColor = '#fef2f2';
                 statusMsg.style.color = '#991b1b';
                 statusMsg.style.border = '1px solid #fee2e2';
-                statusMsg.innerHTML = isAr
-                    ? 'حدث خطأ في الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.'
-                    : 'A network error occurred. Please check your internet connection and try again.';
+                
+                statusMsg.innerHTML = isAr 
+                    ? `حدث خطأ في الاتصال (Network Error): ${error.message || error}`
+                    : `A network error occurred: ${error.message || error}`;
 
                 // Revert button after 6 seconds
                 setTimeout(() => {
