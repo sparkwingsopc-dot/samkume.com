@@ -1070,6 +1070,10 @@ img {
 }
 
 @media (max-width: 768px) {
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
     .logo {
         height: 52px;
     }
@@ -1298,6 +1302,10 @@ img {
 }
 
 @media (max-width: 768px) {
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
     .modal-body {
         grid-template-columns: 1fr;
     }
@@ -1526,6 +1534,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
     .nav-dropdown {
         display: block;
         width: 100%;
