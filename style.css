@@ -1570,18 +1570,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
     flex-direction: column;
     color: var(--dark-blue);
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1.5rem;
     line-height: 1.2;
     letter-spacing: 0.5px;
     font-family: 'Montserrat', sans-serif;
 }
 .brand-name span {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: var(--primary-green);
+    font-size: 0.7rem;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--primary-blue);
     letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-family: 'Inter', sans-serif;
+    text-transform: lowercase;
+    font-family: 'Tahoma', sans-serif;
 }
 @media (max-width: 768px) {
     .brand-name {
