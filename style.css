@@ -1573,16 +1573,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-size: 1.8rem;
     line-height: 1.2;
     letter-spacing: 0.5px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Maiandra GD', sans-serif;
 }
 .brand-name span {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: bold;
     font-style: italic;
     color: var(--primary-blue);
     letter-spacing: 0.5px;
-    text-transform: lowercase;
-    font-family: 'Tahoma', sans-serif;
+    text-transform: capitalize;
+    font-family: 'Maiandra GD', sans-serif;
 }
 @media (max-width: 768px) {
     .brand-name {
