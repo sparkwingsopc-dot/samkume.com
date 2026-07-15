@@ -755,6 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Hello! 👋 Welcome to Samku International. How can I help you today?
                 </div>
                 <div class="chatbot-faq" id="chatbotFaq">
+                    <button class="faq-btn" data-action="download">Download Company Profiles</button>
                     <button class="faq-btn" data-answer="We offer Engineering, Support Services, and Environmental solutions.">What services do you offer?</button>
                     <button class="faq-btn" data-answer="You can reach us at info@samkume.com or call our main office. Visit our Contact page for more details.">How can I contact you?</button>
                     <button class="faq-btn" data-answer="Yes, we are proudly ISO 9001, 14001, and 45001 certified.">Are you ISO certified?</button>
@@ -788,39 +789,94 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             const question = e.target.textContent;
             const answer = e.target.getAttribute('data-answer');
+            const action = e.target.getAttribute('data-action');
 
             // Add user message
             const userMsg = document.createElement('div');
             userMsg.className = 'chatbot-message user';
             userMsg.textContent = question;
-            
-            // Add bot reply
-            const botMsg = document.createElement('div');
-            botMsg.className = 'chatbot-message bot';
-            botMsg.textContent = answer;
+            chatbotBody.appendChild(userMsg);
 
             // Remove FAQ buttons
             const faqContainer = document.getElementById('chatbotFaq');
             if(faqContainer) faqContainer.style.display = 'none';
-
-            chatbotBody.appendChild(userMsg);
             
             // Simulate typing delay
             setTimeout(() => {
-                chatbotBody.appendChild(botMsg);
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                if(action === 'download') {
+                    // Show form
+                    const formHtml = `
+                        <div class="chatbot-message bot">
+                            Please provide your details to download our profiles:
+                            <form id="chatbotLeadForm" class="chatbot-form">
+                                <input type="text" id="leadName" class="chatbot-input" placeholder="Your Name" required>
+                                <input type="email" id="leadEmail" class="chatbot-input" placeholder="Your Email" required>
+                                <input type="tel" id="leadPhone" class="chatbot-input" placeholder="Your Phone Number" required>
+                                <button type="submit" class="chatbot-submit">Submit</button>
+                            </form>
+                        </div>
+                    `;
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = formHtml;
+                    chatbotBody.appendChild(tempDiv.firstElementChild);
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+                    // Handle form submission
+                    const form = document.getElementById('chatbotLeadForm');
+                    form.addEventListener('submit', (ev) => {
+                        ev.preventDefault();
+                        const submitBtn = form.querySelector('.chatbot-submit');
+                        submitBtn.textContent = 'Submitting...';
+                        submitBtn.disabled = true;
+
+                        // Simulate API call delay
+                        setTimeout(() => {
+                            // Log the data (in a real app, send this to backend via fetch)
+                            console.log("Lead Collected:", {
+                                name: document.getElementById('leadName').value,
+                                email: document.getElementById('leadEmail').value,
+                                phone: document.getElementById('leadPhone').value
+                            });
+                            
+                            // Remove form and show success with links
+                            form.parentElement.innerHTML = `
+                                Thank you! Here are your downloads and service links:
+                                <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
+                                    <a href="SAMKU Profile - Cleaning.pdf" class="chatbot-download-link" download><i class="fas fa-file-pdf"></i> Cleaning Profile</a>
+                                    <a href="SAMKU Profile - Contracting.pdf" class="chatbot-download-link" download><i class="fas fa-file-pdf"></i> Contracting Profile</a>
+                                    <a href="engineering.html" class="chatbot-download-link"><i class="fas fa-link"></i> Engineering Services</a>
+                                    <a href="support.html" class="chatbot-download-link"><i class="fas fa-link"></i> Support Services</a>
+                                </div>
+                            `;
+                            
+                            setTimeout(() => {
+                                if(faqContainer) {
+                                    chatbotBody.appendChild(faqContainer);
+                                    faqContainer.style.display = 'flex';
+                                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                                }
+                            }, 1000);
+                        }, 1000);
+                    });
+                } else {
+                    // Add standard bot reply
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'chatbot-message bot';
+                    botMsg.textContent = answer;
+                    chatbotBody.appendChild(botMsg);
+                    
+                    // Show FAQs again after a short delay
+                    setTimeout(() => {
+                        if(faqContainer) {
+                            chatbotBody.appendChild(faqContainer);
+                            faqContainer.style.display = 'flex';
+                            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                        }
+                    }, 1000);
+                }
                 
-                // Show FAQs again after a short delay
-                setTimeout(() => {
-                    if(faqContainer) {
-                        chatbotBody.appendChild(faqContainer);
-                        faqContainer.style.display = 'flex';
-                        chatbotBody.scrollTop = chatbotBody.scrollHeight;
-                    }
-                }, 1000);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
             }, 600);
-            
-            chatbotBody.scrollTop = chatbotBody.scrollHeight;
         });
     });
 });
