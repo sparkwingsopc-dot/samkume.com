@@ -12,27 +12,27 @@ for file_path in html_files:
         
     if '-ar.html' in file_path:
         # Arabic
-        if '<a href="media-ar.html"' not in content:
-            media_class = 'nav-link active' if file_path == 'media-ar.html' else 'nav-link'
+        if '<a href="projects-ar.html"' not in content:
+            projects_class = 'nav-link active' if file_path == 'projects-ar.html' else 'nav-link'
             content = content.replace(
                 '<a href="contact-ar.html" class="nav-link">اتصل بنا</a>',
-                f'<a href="media-ar.html" class="{media_class}">الوسائط</a>\n                <a href="contact-ar.html" class="nav-link">اتصل بنا</a>'
+                f'<a href="projects-ar.html" class="{projects_class}">المشاريع</a>\n                <a href="contact-ar.html" class="nav-link">اتصل بنا</a>'
             )
             content = content.replace(
                 '<a href="contact-ar.html" class="nav-link active">اتصل بنا</a>',
-                f'<a href="media-ar.html" class="{media_class}">الوسائط</a>\n                <a href="contact-ar.html" class="nav-link active">اتصل بنا</a>'
+                f'<a href="projects-ar.html" class="{projects_class}">المشاريع</a>\n                <a href="contact-ar.html" class="nav-link active">اتصل بنا</a>'
             )
     else:
         # English
-        if '<a href="media.html"' not in content:
-            media_class = 'nav-link active' if file_path == 'media.html' else 'nav-link'
+        if '<a href="projects.html"' not in content:
+            projects_class = 'nav-link active' if file_path == 'projects.html' else 'nav-link'
             content = content.replace(
                 '<a href="contact.html" class="nav-link">Contact Us</a>',
-                f'<a href="media.html" class="{media_class}">Media</a>\n                <a href="contact.html" class="nav-link">Contact Us</a>'
+                f'<a href="projects.html" class="{projects_class}">Projects</a>\n                <a href="contact.html" class="nav-link">Contact Us</a>'
             )
             content = content.replace(
                 '<a href="contact.html" class="nav-link active">Contact Us</a>',
-                f'<a href="media.html" class="{media_class}">Media</a>\n                <a href="contact.html" class="nav-link active">Contact Us</a>'
+                f'<a href="projects.html" class="{projects_class}">Projects</a>\n                <a href="contact.html" class="nav-link active">Contact Us</a>'
             )
             
     with open(file_path, 'w', encoding='utf-8') as f:
