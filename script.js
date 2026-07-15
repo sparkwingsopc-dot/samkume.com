@@ -741,24 +741,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Custom Chatbot ---
+    const isArabic = window.location.pathname.includes('-ar.html');
+    
+    const botGreeting = isArabic ? "مرحباً! 👋 أهلاً بكم في سامكو العالمية. كيف يمكنني مساعدتك اليوم؟" : "Hello! 👋 Welcome to Samku International. How can I help you today?";
+    const btnDownload = isArabic ? "تحميل ملفات الشركة" : "Download Company Profiles";
+    const btnServices = isArabic ? "ما هي الخدمات التي تقدمونها؟" : "What services do you offer?";
+    const ansServices = isArabic ? "نحن نقدم الحلول الهندسية، وخدمات الدعم، والحلول البيئية." : "We offer Engineering, Support Services, and Environmental solutions.";
+    const btnContact = isArabic ? "كيف يمكنني التواصل معكم؟" : "How can I contact you?";
+    const ansContact = isArabic ? "يمكنك التواصل معنا عبر info@samkume.com أو الاتصال بمكتبنا الرئيسي. قم بزيارة صفحة اتصل بنا لمزيد من التفاصيل." : "You can reach us at info@samkume.com or call our main office. Visit our Contact page for more details.";
+    const btnIso = isArabic ? "هل أنتم معتمدون من الأيزو؟" : "Are you ISO certified?";
+    const ansIso = isArabic ? "نعم، نحن فخورون بحصولنا على شهادات الأيزو 9001 و 14001 و 45001." : "Yes, we are proudly ISO 9001, 14001, and 45001 certified.";
+
     const chatbotHTML = `
         <button class="chatbot-toggler" aria-label="Open Chat">
             <i class="fas fa-comment-dots"></i>
         </button>
         <div class="chatbot-window">
             <div class="chatbot-header">
-                <h3>Samku Assistant</h3>
+                <h3>${isArabic ? 'مساعد سامكو' : 'Samku Assistant'}</h3>
                 <button class="close-btn"><i class="fas fa-times"></i></button>
             </div>
             <div class="chatbot-body" id="chatbotBody">
                 <div class="chatbot-message bot">
-                    Hello! 👋 Welcome to Samku International. How can I help you today?
+                    ${botGreeting}
                 </div>
                 <div class="chatbot-faq" id="chatbotFaq">
-                    <button class="faq-btn" data-action="download">Download Company Profiles</button>
-                    <button class="faq-btn" data-answer="We offer Engineering, Support Services, and Environmental solutions.">What services do you offer?</button>
-                    <button class="faq-btn" data-answer="You can reach us at info@samkume.com or call our main office. Visit our Contact page for more details.">How can I contact you?</button>
-                    <button class="faq-btn" data-answer="Yes, we are proudly ISO 9001, 14001, and 45001 certified.">Are you ISO certified?</button>
+                    <button class="faq-btn" data-action="download">${btnDownload}</button>
+                    <button class="faq-btn" data-answer="${ansServices}">${btnServices}</button>
+                    <button class="faq-btn" data-answer="${ansContact}">${btnContact}</button>
+                    <button class="faq-btn" data-answer="${ansIso}">${btnIso}</button>
                 </div>
             </div>
         </div>
@@ -807,12 +818,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Show form
                     const formHtml = `
                         <div class="chatbot-message bot">
-                            Please provide your details to download our profiles:
+                            ${isArabic ? 'يرجى تقديم بياناتك لتحميل ملفاتنا:' : 'Please provide your details to download our profiles:'}
                             <form id="chatbotLeadForm" class="chatbot-form">
-                                <input type="text" id="leadName" class="chatbot-input" placeholder="Your Name" required>
-                                <input type="email" id="leadEmail" class="chatbot-input" placeholder="Your Email" required>
-                                <input type="tel" id="leadPhone" class="chatbot-input" placeholder="Your Phone Number" required>
-                                <button type="submit" class="chatbot-submit">Submit</button>
+                                <input type="text" id="leadName" class="chatbot-input" placeholder="${isArabic ? 'الاسم' : 'Your Name'}" required>
+                                <input type="email" id="leadEmail" class="chatbot-input" placeholder="${isArabic ? 'البريد الإلكتروني' : 'Your Email'}" required>
+                                <input type="tel" id="leadPhone" class="chatbot-input" placeholder="${isArabic ? 'رقم الهاتف' : 'Your Phone Number'}" required>
+                                <button type="submit" class="chatbot-submit">${isArabic ? 'إرسال' : 'Submit'}</button>
                             </form>
                         </div>
                     `;
@@ -826,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.addEventListener('submit', (ev) => {
                         ev.preventDefault();
                         const submitBtn = form.querySelector('.chatbot-submit');
-                        submitBtn.textContent = 'Submitting...';
+                        submitBtn.textContent = isArabic ? 'جاري الإرسال...' : 'Submitting...';
                         submitBtn.disabled = true;
 
                         // Simulate API call delay
@@ -840,12 +851,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             // Remove form and show success with links
                             form.parentElement.innerHTML = `
-                                Thank you! Here are your downloads and service links:
+                                ${isArabic ? 'شكراً لك! إليك روابط التحميل والخدمات:' : 'Thank you! Here are your downloads and service links:'}
                                 <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
-                                    <a href="SAMKU Profile - Cleaning.pdf" class="chatbot-download-link" download><i class="fas fa-file-pdf"></i> Cleaning Profile</a>
-                                    <a href="SAMKU Profile - Contracting.pdf" class="chatbot-download-link" download><i class="fas fa-file-pdf"></i> Contracting Profile</a>
-                                    <a href="engineering.html" class="chatbot-download-link"><i class="fas fa-link"></i> Engineering Services</a>
-                                    <a href="support.html" class="chatbot-download-link"><i class="fas fa-link"></i> Support Services</a>
+                                    <a href="SAMKU Profile - Cleaning.pdf" class="chatbot-download-link" download><i class="fas fa-file-pdf"></i> ${isArabic ? 'ملف التنظيف' : 'Cleaning Profile'}</a>
+                                    <a href="SAMKU Profile - Contracting.pdf" class="chatbot-download-link" download><i class="fas fa-file-pdf"></i> ${isArabic ? 'ملف المقاولات' : 'Contracting Profile'}</a>
+                                    <a href="engineering${isArabic ? '-ar' : ''}.html" class="chatbot-download-link"><i class="fas fa-link"></i> ${isArabic ? 'الخدمات الهندسية' : 'Engineering Services'}</a>
+                                    <a href="support${isArabic ? '-ar' : ''}.html" class="chatbot-download-link"><i class="fas fa-link"></i> ${isArabic ? 'خدمات الدعم' : 'Support Services'}</a>
                                 </div>
                             `;
                             
