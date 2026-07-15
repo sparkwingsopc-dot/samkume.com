@@ -717,5 +717,110 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial check
         checkAuth();
     }
-});
 
+    // --- Scroll to Top Button ---
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.className = 'scroll-to-top';
+    scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    scrollTopBtn.setAttribute('aria-label', 'Scroll to top of page');
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // --- Custom Chatbot ---
+    const chatbotHTML = `
+        <button class="chatbot-toggler" aria-label="Open Chat">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="chatbot-window">
+            <div class="chatbot-header">
+                <h3>Samku Assistant</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot">
+                    Hello! 👋 Welcome to Samku International. How can I help you today?
+                </div>
+                <div class="chatbot-faq" id="chatbotFaq">
+                    <button class="faq-btn" data-answer="We offer Engineering, Support Services, and Environmental solutions.">What services do you offer?</button>
+                    <button class="faq-btn" data-answer="You can reach us at info@samkume.com or call our main office. Visit our Contact page for more details.">How can I contact you?</button>
+                    <button class="faq-btn" data-answer="Yes, we are proudly ISO 9001, 14001, and 45001 certified.">Are you ISO certified?</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Inject chatbot HTML
+    const chatbotContainer = document.createElement('div');
+    chatbotContainer.innerHTML = chatbotHTML;
+    document.body.appendChild(chatbotContainer);
+
+    const chatbotToggler = document.querySelector('.chatbot-toggler');
+    const chatbotWindow = document.querySelector('.chatbot-window');
+    const closeBtn = document.querySelector('.close-btn');
+    const chatbotBody = document.getElementById('chatbotBody');
+    const faqButtons = document.querySelectorAll('.faq-btn');
+
+    // Toggle Chatbot Window
+    chatbotToggler.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('show');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatbotWindow.classList.remove('show');
+    });
+
+    // Handle FAQ Clicks
+    faqButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const question = e.target.textContent;
+            const answer = e.target.getAttribute('data-answer');
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chatbot-message user';
+            userMsg.textContent = question;
+            
+            // Add bot reply
+            const botMsg = document.createElement('div');
+            botMsg.className = 'chatbot-message bot';
+            botMsg.textContent = answer;
+
+            // Remove FAQ buttons
+            const faqContainer = document.getElementById('chatbotFaq');
+            if(faqContainer) faqContainer.style.display = 'none';
+
+            chatbotBody.appendChild(userMsg);
+            
+            // Simulate typing delay
+            setTimeout(() => {
+                chatbotBody.appendChild(botMsg);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                
+                // Show FAQs again after a short delay
+                setTimeout(() => {
+                    if(faqContainer) {
+                        chatbotBody.appendChild(faqContainer);
+                        faqContainer.style.display = 'flex';
+                        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                    }
+                }, 1000);
+            }, 600);
+            
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        });
+    });
+});
