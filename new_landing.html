@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMKU International | Contracting & Facility Support</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-blue: #0A2E4B;
+            --secondary-blue: #14507D;
+            --primary-green: #2ecc71;
+            --secondary-green: #27ae60;
+            --dark: #1A1A1A;
+            --light-gray: #F8FAFC;
+            --white: #FFFFFF;
+            --text-color: #4A5568;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary-blue);
+        }
+
+        /* Glassmorphism Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 10px 5%;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo img {
+            max-height: 55px;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-green);
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            margin-top: 0;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 46, 75, 0.95) 0%, rgba(20, 80, 125, 0.7) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: var(--white);
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: var(--primary-green);
+        }
+
+        .hero h2 {
+            color: var(--light-gray);
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .iso-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .iso-badge i {
+            color: var(--primary-green);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Section Global */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--primary-blue);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+            display: block;
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: var(--white);
+            position: relative;
+        }
+
+        .category-header {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-header i {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            group: hover;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-img {
+            transform: scale(1.08);
+        }
+
+        .service-content {
+            padding: 30px;
+            position: relative;
+            background: var(--white);
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-content h3 {
+            color: var(--primary-green);
+        }
+
+        .service-content p {
+            color: var(--text-color);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Clients & Partners Section */
+        .clients-section {
+            background: var(--light-gray);
+        }
+
+        .logo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .logo-item {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+            color: var(--secondary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(46, 204, 113, 0.3);
+            color: var(--primary-green);
+        }
+
+        .partners-header {
+            text-align: center;
+            color: var(--text-color);
+            margin: 60px 0 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 40px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        }
+        
+        .footer-credit {
+            font-size: 0.9rem;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: var(--shadow-md);
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid var(--light-gray);
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 20px;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 { font-size: 2.8rem; }
+            .hero h2 { font-size: 1.3rem; }
+            .btn-container { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <img src="samkulogo-removebg-preview.png" alt="SAMKU International Logo">
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#clients">Clients & Partners</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="iso-badge">
+                <i class="fas fa-certificate"></i> An ISO Certified Company
+            </div>
+            <h1>SAMKU International<br><span>Infrastructure Solutions</span></h1>
+            <h2>In pursuit of excellence... Making it happen.</h2>
+            <div class="btn-container">
+                <a href="#services" class="btn btn-primary">
+                    Explore Services <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <h2 class="section-title">Our Comprehensive Services</h2>
+
+        <!-- Engineering Services -->
+        <h3 class="category-header"><i class="fas fa-hard-hat"></i> Engineering Services</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/road.png" alt="Road and Asphalt Works" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Road & Asphalt Works</h3>
+                    <p>Executing high-quality paving, highway projects, and pavement maintenance with precision and durability.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/water.png" alt="Water and Sewage Networks" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Water & Sewage Networks</h3>
+                    <p>Installing robust piping and underground utility networks to ensure seamless industrial and residential flow.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/steel.png" alt="Steel Hanger Construction" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Steel Hanger Construction</h3>
+                    <p>Designing and constructing heavy-duty steel warehouses and industrial structures built to last.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infrastructure Development -->
+        <h3 class="category-header"><i class="fas fa-project-diagram"></i> Infrastructure Development</h3>
+        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 400px));">
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/pipeline.png" alt="Pipeline Projects" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Pipeline Projects</h3>
+                    <p>Comprehensive infrastructure development and advanced pipeline installations for large-scale industrial applications.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Services -->
+        <h3 class="category-header"><i class="fas fa-cogs"></i> Support Services</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/pest_control.png" alt="Pest Control" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Pest Control</h3>
+                    <p>Professional pest management solutions utilizing modern techniques to maintain safe and healthy environments.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/landscaping.png" alt="Landscaping" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Landscaping</h3>
+                    <p>Stunning urban design, lush green spaces, and pristine corporate ground maintenance.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/equipment.png" alt="Heavy Equipment Rental" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Heavy Equipment Rental</h3>
+                    <p>Providing top-tier machinery and reliable heavy equipment for demanding large-scale construction projects.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="gen_img/interlock.png" alt="Interlock & Paving" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Interlock & Paving</h3>
+                    <p>Expert interlock installation and decorative paving for commercial and residential outdoor spaces.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Services -->
+        <h3 class="category-header"><i class="fas fa-chalkboard-teacher"></i> Consultation & E-Learning</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1503594384566-461fe158e797?q=80&w=1000&auto=format&fit=crop" alt="Consultation Services" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>Consultation Services</h3>
+                    <p>Expert engineering and project management consultation to ensure successful project delivery and execution.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop" alt="E-Learning & Certification" class="service-img">
+                </div>
+                <div class="service-content">
+                    <h3>E-Learning & Certification</h3>
+                    <p>Providing professional training, specialized certifications, and continuous education programs for the industry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients & Partners Section -->
+    <section id="clients" class="clients-section">
+        <h2 class="section-title">Our Clients & Partners</h2>
+        
+        <h3 class="partners-header">Trusted by Industry Leaders</h3>
+        <div class="logo-grid">
+            <div class="logo-item"><i class="fas fa-ship" style="margin-right:10px; color:var(--primary-green);"></i> Sedress Marine</div>
+            <div class="logo-item"><i class="fas fa-building" style="margin-right:10px; color:var(--primary-green);"></i> Al Bawani Contracting</div>
+        </div>
+
+        <h3 class="partners-header">Our Strategic Partners</h3>
+        <div class="logo-grid">
+            <div class="logo-item">Zoomlion</div>
+            <div class="logo-item">Foton</div>
+            <div class="logo-item">Sany</div>
+            <div class="logo-item">Sinotruck</div>
+            <div class="logo-item">Benz</div>
+            <div class="logo-item">Petromin</div>
+            <div class="logo-item">Iveco</div>
+            <div class="logo-item">Petroken Eng.</div>
+            <div class="logo-item">Lijan Insulation</div>
+            <div class="logo-item">Toyota</div>
+            <div class="logo-item">Arab National Bank</div>
+            <div class="logo-item">National Bank of Dubai</div>
+            <div class="logo-item">Sreeram Aerospace</div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-size: 0.9rem; color: #888;">
+            <i class="fas fa-info-circle"></i> Replace text blocks with actual partner logo images in the final deployment
+        </p>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" style="background: var(--white);">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="font-size: 1.1rem; color: var(--text-color); margin-bottom: 30px;">
+                Ready to start your next big project? Contact us today to learn how our comprehensive infrastructure solutions can help you achieve excellence.
+            </p>
+            <a href="mailto:info@samkume.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">
+                <i class="fas fa-envelope"></i> Contact Us Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div style="margin-bottom: 15px;">
+            <img src="samkulogo-removebg-preview.png" alt="SAMKU" style="height: 40px; filter: brightness(0) invert(1); opacity: 0.8;">
+        </div>
+        <p>&copy; 2026 SAMKU International. All Rights Reserved.</p>
+        <p class="footer-credit">Designed & Developed by Sparkwings Innovations OPC Pvt Ltd</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.classList.remove('active'); // Close mobile menu if open
+                
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
