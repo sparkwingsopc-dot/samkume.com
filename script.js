@@ -749,8 +749,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const ansServices = isArabic ? "نحن نقدم الحلول الهندسية، وخدمات الدعم، والحلول البيئية." : "We offer Engineering, Support Services, and Environmental solutions.";
     const btnContact = isArabic ? "كيف يمكنني التواصل معكم؟" : "How can I contact you?";
     const ansContact = isArabic ? "يمكنك التواصل معنا عبر info@samkume.com أو الاتصال بمكتبنا الرئيسي. قم بزيارة صفحة اتصل بنا لمزيد من التفاصيل." : "You can reach us at info@samkume.com or call our main office. Visit our Contact page for more details.";
-    const btnIso = isArabic ? "هل أنتم معتمدون من الأيزو؟" : "Are you ISO certified?";
-    const ansIso = isArabic ? "نعم، نحن فخورون بحصولنا على شهادات الأيزو 9001 و 14001 و 45001." : "Yes, we are proudly ISO 9001, 14001, and 45001 certified.";
+    const btnSocials = isArabic ? "روابط وسائل التواصل الاجتماعي" : "Social Media Links";
+    const ansSocials = isArabic ? 
+        "تابعنا على منصاتنا:<br><div style='display:flex; flex-direction:column; gap:5px; margin-top:10px;'><a href='https://www.linkedin.com/in/samku-international-72b14b422/' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#0077b5;'><i class='fab fa-linkedin'></i> لينكد إن</a><a href='https://x.com/samkuco' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#000;'><i class='fab fa-x-twitter'></i> إكس (تويتر)</a><a href='https://www.facebook.com/profile.php?id=61591778555642' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#1877f2;'><i class='fab fa-facebook'></i> فيسبوك</a><a href='https://www.instagram.com/samkuco/' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#e4405f;'><i class='fab fa-instagram'></i> إنستغرام</a></div>" : 
+        "Follow us on our channels:<br><div style='display:flex; flex-direction:column; gap:5px; margin-top:10px;'><a href='https://www.linkedin.com/in/samku-international-72b14b422/' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#0077b5;'><i class='fab fa-linkedin'></i> LinkedIn</a><a href='https://x.com/samkuco' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#000;'><i class='fab fa-x-twitter'></i> X (Twitter)</a><a href='https://www.facebook.com/profile.php?id=61591778555642' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#1877f2;'><i class='fab fa-facebook'></i> Facebook</a><a href='https://www.instagram.com/samkuco/' target='_blank' rel='noopener noreferrer' style='text-decoration:none; color:#e4405f;'><i class='fab fa-instagram'></i> Instagram</a></div>";
 
     const chatbotHTML = `
         <button class="chatbot-toggler" aria-label="Open Chat">
@@ -769,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="faq-btn" data-action="download">${btnDownload}</button>
                     <button class="faq-btn" data-answer="${ansServices}">${btnServices}</button>
                     <button class="faq-btn" data-answer="${ansContact}">${btnContact}</button>
-                    <button class="faq-btn" data-answer="${ansIso}">${btnIso}</button>
+                    <button class="faq-btn" data-answer="${ansSocials}">${btnSocials}</button>
                 </div>
             </div>
         </div>
@@ -873,7 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Add standard bot reply
                     const botMsg = document.createElement('div');
                     botMsg.className = 'chatbot-message bot';
-                    botMsg.textContent = answer;
+                    botMsg.innerHTML = answer;
                     chatbotBody.appendChild(botMsg);
                     
                     // Show FAQs again after a short delay
